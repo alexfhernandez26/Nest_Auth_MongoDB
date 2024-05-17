@@ -24,7 +24,7 @@ export class AuthService {
       })
       await user.save();
       return {
-        ...user,
+        email: user.email,
         token : this.getJwtToken({_id:user._id})
       }
       //TODO: Retornar JWT
