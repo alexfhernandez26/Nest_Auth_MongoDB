@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Schema as MongooseSchema } from "mongoose";
+import { User } from "src/auth/entities/user.entity";
 
 @Schema()
 export class Product extends Document {
@@ -13,7 +14,12 @@ export class Product extends Document {
     @Prop({
         required:true
     })
-    price: number
+    price: number;
+
+    @Prop({
+      type:[{type:MongooseSchema.Types.ObjectId,ref:'User'}]
+    })
+    user:User
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

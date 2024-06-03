@@ -15,8 +15,9 @@ export class ProductController {
   @Auth(VALID_ROLE.user)
   create(
     @Body() createProductDto: CreateProductDto,
+    @GetUser() user : User
   ) {
-    return this.productService.create(createProductDto);
+    return this.productService.create(createProductDto,user);
   }
 
   @Get()
