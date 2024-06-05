@@ -37,7 +37,7 @@ export class ProductController {
     @Body() updateProductDto: UpdateProductDto,
     @GetUser() user:User
   ) {
-    return this.productService.update(id, updateProductDto);
+    return this.productService.update(id, updateProductDto,user);
   }
 
   @Delete(':id')

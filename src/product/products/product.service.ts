@@ -38,12 +38,12 @@ export class ProductService {
   }
 
 
-  async update(id: string, updateProductDto:  UpdateProductDto) {
+  async update(id: string, updateProductDto:  UpdateProductDto,user:User) {
     
-    const pokemonUpdated = await this.producModel.findByIdAndUpdate(id,updateProductDto,{new :true}).exec();
-    if(!pokemonUpdated) throw new NotFoundException(`no se encontro producto con el id ${id}`)
+    const productUpdated = await this.producModel.findByIdAndUpdate(id,{...updateProductDto, user:user._id},{new :true}).exec();
+    if(!productUpdated) throw new NotFoundException(`no se encontro producto con el id ${id}`)
 
-    return pokemonUpdated;
+    return productUpdated;
   }
 
  async remove(id: string) {
